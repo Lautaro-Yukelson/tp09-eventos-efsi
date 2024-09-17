@@ -9,6 +9,7 @@
   --font-title: "Montserrat", sans-serif;
   --font-text: "Lato", sans-serif;
 }
+
 main {
   display: grid;
   place-items: center;
@@ -42,17 +43,15 @@ p {
   overflow: hidden;
   border-radius: 0.625rem;
   box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+  background-image: url('/no-image.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .card > * {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-}
-
-.card__background {
-  object-fit: cover;
-  max-width: 100%;
-  height: 100%;
 }
 
 .card__content {
@@ -77,8 +76,13 @@ p {
 
 .card__title {
   position: relative;
-  width: fit-content;
-  width: -moz-fit-content; /* Prefijo necesario para Firefox  */
+  width: 100%;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.5rem;
+  color: var(--white); /* Asegurarse de que el texto sea visible */
 }
 
 .card__title::after {
@@ -89,12 +93,16 @@ p {
   bottom: calc((1.25rem - 0.5rem) * -1);
   left: -1.25rem;
   background-color: var(--brand-color);
+  opacity: 1;
+  transform: scaleX(1);
+  transition: opacity 500ms ease-in, transform 500ms ease-in;
+  transform-origin: left;
 }
 
 .card__button {
   padding: 0.75em 1.6em;
   width: fit-content;
-  width: -moz-fit-content; /* Prefijo necesario para Firefox  */
+  width: -moz-fit-content; /* Prefijo necesario para Firefox */
   font-variant: small-caps;
   font-weight: bold;
   border-radius: 0.45em;
@@ -111,14 +119,13 @@ p {
 }
 
 .card__description {
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* Ajusta el número de líneas que deseas mostrar */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--white);
-  }
-  
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Ajusta el número de líneas que deseas mostrar */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--white);
+}
 
 @media (any-hover: hover) and (any-pointer: fine) {
   .card__content {
@@ -127,15 +134,19 @@ p {
     transition-delay: 500ms;
   }
 
+  .card__title {
+    transition: all 500ms ease-in-out;
+  }
+
   .card__title::after {
     opacity: 0;
     transform: scaleX(0);
-    transition: opacity 1000ms ease-in, transform 500ms ease-out;
-    transition-delay: 500ms;
+    transition: opacity 500ms ease-in, transform 500ms ease-out;
     transform-origin: right;
+    transition-delay: 500ms;
   }
 
-  .card__background {
+  .card {
     transition: transform 500ms ease-in;
   }
 
@@ -161,18 +172,10 @@ p {
     transition-duration: 0ms;
   }
 
-  .card:hover .card__background,
-  .card:focus-within .card__background {
-    transform: scale(1.3);
-  }
-
-  .card:hover .card__content--container > :not(.card__title),
-  .card:hover .card__button,
-  .card:focus-within .card__content--container > :not(.card__title),
-  .card:focus-within .card__button {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
-    transition-delay: 1000ms;
+  .card:hover .card__title {
+    white-space: normal; /* Mostrar el título completo al hacer hover */
+    overflow: visible;
+    text-overflow: unset; /* Eliminar el truncamiento */
   }
 
   .card:hover .card__title::after,
@@ -183,4 +186,21 @@ p {
     transition: opacity 500ms ease-in, transform 500ms ease-in;
     transition-delay: 500ms;
   }
+
+  .card:hover .card__content--container > :not(.card__title),
+  .card:hover .card__button,
+  .card:focus-within .card__content--container > :not(.card__title),
+  .card:focus-within .card__button {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+    transition-delay: 1000ms;
+  }
+}
+
+.event-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
 }
