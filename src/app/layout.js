@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import UserProvider from "./context/UserContext";
 import "./globals.css";
 
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
 				<UserProvider>
 					<Navbar />
 					{children}
+					<Footer />
 				</UserProvider>
 			</body>
 		</html>

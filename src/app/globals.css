@@ -17,6 +17,11 @@ body {
 }
 
 main {
-	flex-grow: 1;
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: fit-content;
+	padding: 40px;
+	gap: 40px;
 }

@@ -9,13 +9,6 @@
   --font-title: "Montserrat", sans-serif;
   --font-text: "Lato", sans-serif;
 }
-
-main {
-  display: grid;
-  place-items: center;
-  height: 100vh;
-}
-
 h2 {
   font-size: 2.25rem;
   font-family: var(--font-title);
@@ -61,6 +54,7 @@ p {
   justify-content: space-between;
   align-self: flex-end;
   height: 90%;
+  min-width: 350px;
   padding: 12% 1.25rem 1.875rem;
   background: linear-gradient(
     180deg,
