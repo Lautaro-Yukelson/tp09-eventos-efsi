@@ -7,7 +7,9 @@ import Link from "next/link";
 import Input from "@/app/components/Input/Input";
 import "./page.css";
 
-export default function Login() {
+export default function Register() {
+	const [first_name, setfirst_name] = useState("");
+	const [last_name, setlast_name] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const { makeRequest, loading, error } = useAxios();
@@ -15,25 +17,41 @@ export default function Login() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			const response = await makeRequest("post", "/user/login", {
+			const response = await makeRequest("post", "/user/register", {
+				first_name,
+				last_name,
 				username,
 				password,
 			});
 			if (response?.success) {
-				Cookies.set("token", response.token, { expires: 1 });
-				console.log("Login:", response.token);
-				window.location.href = "/";
+				window.location.href = "/login";
 			}
 		} catch (err) {
-			console.error("Fetch API Error:", err);
+			console.error("Error en la API:", err);
 		}
 	};
 
 	return (
 		<main>
 			<div className="login-container">
-				<h2>Iniciar sesión</h2>
+				<h2>Registrarse</h2>
 				<form onSubmit={handleSubmit}>
+					<Input
+						type="text"
+						name="first_name"
+						id="first_name"
+						placeholder="Nombre"
+						value={first_name}
+						onChange={(e) => setfirst_name(e.target.value)}
+					/>
+					<Input
+						type="text"
+						name="last_name"
+						id="last_name"
+						placeholder="Apellido"
+						value={last_name}
+						onChange={(e) => setlast_name(e.target.value)}
+					/>
 					<Input
 						type="text"
 						name="username"
@@ -51,16 +69,16 @@ export default function Login() {
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<p>
-						¿No tienes una cuenta? 
-						<Link href="/register">
-							<b>Registrate</b>
+						¿Ya tienes una cuenta? 
+						<Link href="/login">
+							<b>Inicia sesión</b>
 						</Link>
 					</p>
 					<button type="submit" disabled={loading}>
-						{loading ? "Cargando..." : "Entrar"}
+						{loading ? "Cargando..." : "Registrarse"}
 					</button>
 					{error && (
-						<p className="error-message">{error.message || "An error occurred"}</p>
+						<p className="error-message">{error.message || "Ocurrió un error"}</p>
 					)}
 				</form>
 			</div>

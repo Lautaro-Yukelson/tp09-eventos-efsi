@@ -8,13 +8,16 @@ export function middleware(request) {
 	const pathname = url.pathname;
 
 	if (!token) {
-		if (!pathname.startsWith("/login")) {
+		if (!pathname.startsWith("/login") && !pathname.startsWith("/register")) {
 			return NextResponse.redirect(new URL("/login", request.url));
 		}
 	}
 
 	if (token) {
 		if (pathname.startsWith("/login")) {
+			return NextResponse.redirect(new URL("/", request.url));
+		}
+		if (pathname.startsWith("/register")) {
 			return NextResponse.redirect(new URL("/", request.url));
 		}
 	}
