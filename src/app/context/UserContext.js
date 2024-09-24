@@ -10,7 +10,6 @@ const UserProvider = (props) => {
 	useEffect(() => {
 		const token = Cookies.get("token");
 		if (token) {
-			console.log(token);
 			setUser(jwtDecode(token));
 		}
 	}, []);
