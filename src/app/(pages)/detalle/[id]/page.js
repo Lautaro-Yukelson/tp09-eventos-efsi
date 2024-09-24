@@ -4,7 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
 
-const DetallesEvento = () => {
+export default function DetallesEvento() {
   const router = useRouter();
   const { id } = useParams();
   const [event, setEvent] = useState(null);
@@ -57,4 +57,3 @@ const DetallesEvento = () => {
   );
 };
 
-export default DetallesEvento;

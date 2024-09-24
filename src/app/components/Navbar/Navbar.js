@@ -16,6 +16,9 @@ export default function Navbar() {
 			<Link href="/">
 				<h1>EFSI</h1>
 			</Link>
+			<Link href="/contacto">
+				<h1>contacto</h1>
+			</Link>
 			<div className="user-controls">
 				{user ? (
 					<>
