@@ -32,7 +32,7 @@ export default function Register() {
 	};
 
 	return (
-		<main>
+		<main className="form-container">
 			<div className="login-container">
 				<h2>Registrarse</h2>
 				<form onSubmit={handleSubmit}>
@@ -56,7 +56,7 @@ export default function Register() {
 						type="text"
 						name="username"
 						id="username"
-						placeholder="Nombre de usuario"
+						placeholder="Direccion de correo"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 					/>

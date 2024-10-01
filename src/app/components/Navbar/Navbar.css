@@ -18,7 +18,8 @@
 
 .user-controls {
 	display: flex;
-	gap: 24px;
+	flex-direction: column;
+	gap: 5px;
 	justify-content: center;
 	align-items: center;
 }
@@ -33,5 +34,33 @@
 }
 
 .user-controls p {
-	font-size: 14px;
+	font-size: 17px;
+	font-weight: bold;
 }
+
+
+.user-controls button:hover{
+	background-color: #ce9a00;
+	transition: 0.3s;
+}
+
+.nav-extras{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
+}
+
+.nav-extras h3{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.contacto-link {
+	display: none; 
+  }
+  
+  .navbar.logged .contacto-link {
+	display: block;
+  }
+  

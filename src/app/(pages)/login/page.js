@@ -30,7 +30,7 @@ export default function Login() {
 	};
 
 	return (
-		<main>
+		<main className="form-container">
 			<div className="login-container">
 				<h2>Iniciar sesión</h2>
 				<form onSubmit={handleSubmit}>

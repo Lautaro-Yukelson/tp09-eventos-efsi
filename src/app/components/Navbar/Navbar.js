@@ -12,25 +12,28 @@ export default function Navbar() {
 	};
 
 	return (
-		<nav className={`navbar ${user ? "logged" : ""}`}>
+		<nav className={`navbar ${user ? "logged" : "unlogged"}`}>
 			<Link href="/">
 				<h1>EFSI</h1>
 			</Link>
-			<Link href="/contacto">
-				<h1>contacto</h1>
-			</Link>
-			<div className="user-controls">
-				{user ? (
-					<>
-						<p>
-							{user.first_name} {user.last_name}
-						</p>
-						<button onClick={handleLogout}>Cerrar sesión</button>
-					</>
-				) : (
-					<></>
-				)}
+			<div className="nav-extras">
+				<Link href="/contacto" className="contacto-link">
+					<h3>contacto</h3>
+				</Link>
+				<div className="user-controls">
+					{user ? (
+						<>
+							<p>
+								{user.first_name} {user.last_name}
+							</p>
+							<button onClick={handleLogout}>Cerrar sesión</button>
+						</>
+					) : (
+						<></>
+					)}
+				</div>
 			</div>
+			
 		</nav>
 	);
 }

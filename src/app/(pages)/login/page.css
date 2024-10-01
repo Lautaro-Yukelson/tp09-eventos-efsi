@@ -34,3 +34,21 @@ main {
 .success-message {
 	margin-top: 16px;
 }
+
+form p{
+	margin-bottom: 15px;
+}
+
+form a{
+	margin-left: 5px;
+	text-decoration: none;
+	color: #727272;
+}
+
+.form-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+}
