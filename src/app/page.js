@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import useAxios from "./hooks/useAxios";
+import Card from "./components/Card/Card";
 import "./page.css";
 
 export default function Home() {
@@ -23,10 +24,6 @@ export default function Home() {
     fetchEvents();
   }, []);
 
-  const handleMoreDetails = (id) => {
-    router.push(`/detalle/${id}`); 
-  };
-
   return (
     <main>
       <h1>Lista de Eventos</h1>
@@ -35,28 +32,12 @@ export default function Home() {
       <ul className="event-list">
         {Array.isArray(events) && events.length > 0 ? (
           events.map((event) => (
-            <li key={event.id} className="card">
-              <div className="card__content flow">
-                <div className="card__content--container flow">
-                  <h2 className="card__title">{event.name}</h2>
-                  <p className="card__description">{event.description}</p>
-                </div>
-                <div className="card__details">
-                  <p><strong>Categoría:</strong> {event.category_name}</p>
-                  <p><strong>Fecha:</strong> {new Date(event.start_date).toLocaleDateString()}</p>
-                  <p><strong>Duración:</strong> {event.duration_in_minutes} minutos</p>
-                  <p><strong>Precio:</strong> ${event.price}</p>
-                  <p><strong>Capacidad máxima:</strong> {event.max_assistance}</p>
-                </div>
-                <button
-                  className="card__button"
-                  onClick={() => handleMoreDetails(event.id)}
-                >
-                  Más detalles
-                </button>
-              </div>
-            </li>
+            <Card 
+            key={event.id} 
+            event={event} 
+            />
           ))
+          
         ) : (
           <p>No hay eventos disponibles.</p>
         )}

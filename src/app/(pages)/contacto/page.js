@@ -1,5 +1,6 @@
 "use client";
 import "./page.css";
+import Input from "@/app/components/Input/Input";
 
 export default function Contacto () {
   
@@ -12,12 +13,18 @@ export default function Contacto () {
             </div>
             
             <form action="#" method="post">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required/>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required/>
-
+                <Input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Nombre"
+                />
+                <Input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="email"
+                />
                 <label for="mensaje">Mensaje:</label>
                 <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
 
